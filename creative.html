@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ data.name }} - Resume</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fef8f5;
+      margin: 0;
+      padding: 40px;
+      color: #222;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    .top-section {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    .top-section img {
+      width: 180px;
+      border-radius: 50%;
+    }
+    .intro-text {
+      flex: 1;
+    }
+    .intro-text h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .intro-text p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .contact {
+      margin-top: 10px;
+      font-size: 15px;
+    }
+    .section {
+      margin-top: 40px;
+    }
+    .section-title {
+      font-size: 22px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .purple { background-color: #c5b4f1; }
+    .yellow { background-color: #fcf376; }
+    .green { background-color: #b3f3b3; }
+    .pink { background-color: #fdd1e9; }
+    .tag {
+      display: inline-block;
+      background: #f1f1f1;
+      margin: 5px 10px 5px 0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .columns {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .col {
+      flex: 1;
+      min-width: 300px;
+    }
+    .entry {
+      margin-bottom: 20px;
+    }
+    .entry h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .entry small {
+      color: #777;
+    }
+    .entry p {
+      margin: 5px 0 0 0;
+    }
+    .software-icons {
+      font-size: 24px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .software-icons span {
+      padding: 10px 16px;
+      background-color: #eee;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-section">
+      {% if data.image_base64 %}
+      <img src="data:image/png;base64,{{ data.image_base64 }}" alt="{{ data.name }}">
+      {% endif %}
+      <div class="intro-text">
+        <h1>hi there!</h1>
+        <p>I am <strong style="color:#e74c3c">{{ data.name }}</strong>, {{ data.summary }}</p>
+        <div class="contact">
+          {% if data.website %}📎 <a href="{{ data.website }}">{{ data.website }}</a><br>{% endif %}
+          📞 {{ data.phone }}<br>
+          ✉️ {{ data.email }}<br>
+          📍 {{ data.location }}
+        </div>
+      </div>
+    </div>
+
+    {% if data.education %}
+    <div class="section">
+      <div class="section-title purple">EDUCATION</div>
+      {% for edu in data.education %}
+      <div class="entry">
+        <h4>{{ edu.year }}: {{ edu.degree }}</h4>
+        <small>{{ edu.school }}</small>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.skills %}
+    <div class="section">
+      <div class="section-title yellow">SKILLS</div>
+      <div>
+        {% for skill in data.skills %}
+        <span class="tag">{{ skill }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data.software %}
+    <div class="section">
+      <div class="section-title pink">SOFTWARE</div>
+      <div class="software-icons">
+        {% for soft in data.software %}
+        <span>{{ soft }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data.experience %}
+    <div class="section columns">
+      <div class="col">
+        <div class="section-title green">EXPERIENCE</div>
+        {% for job in data.experience[:4] %}
+        <div class="entry">
+          <h4>{{ job.dates }}: {{ job.role }}</h4>
+          <small>{{ job.company }}</small>
+          {% if job.bullet_points %}
+            {% for bullet in job.bullet_points %}
+            <p>{{ bullet }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col">
+        {% for job in data.experience[4:] %}
+        <div class="entry">
+          <h4>{{ job.dates }}: {{ job.role }}</h4>
+          <small>{{ job.company }}</small>
+          {% if job.bullet_points %}
+            {% for bullet in job.bullet_points %}
+            <p>{{ bullet }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data.projects %}
+    <div class="section">
+      <div class="section-title purple">PROJECTS</div>
+      <ul>
+        {% for project in data.projects %}
+        <li>{{ project }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if data.certifications %}
+    <div class="section">
+      <div class="section-title pink">CERTIFICATIONS</div>
+      <ul>
+        {% for cert in data.certifications %}
+        <li>{{ cert }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if data.languages %}
+    <div class="section">
+      <div class="section-title green">LANGUAGES</div>
+      <div>
+        {% for lang in data.languages %}
+        <span class="tag">{{ lang }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if data.hobbies %}
+    <div class="section">
+      <div class="section-title yellow">HOBBIES</div>
+      {% for h in data.hobbies %}
+      <span class="tag">{{ h }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.socials %}
+    <div class="section">
+      <div class="section-title pink">SOCIAL PROFILES</div>
+      {% for link in data.socials %}
+      <div><a href="{{ link }}">{{ link }}</a></div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
