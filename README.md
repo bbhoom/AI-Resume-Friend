@@ -1,8 +1,8 @@
-# 🤖 AI Resume Builder
+# AI Resume Builder
 
 A sleek and intelligent AI-powered Resume Builder app built using **Streamlit**, **Python**, and **Cohere AI**. This app helps users generate clean, professional resumes by simply answering a few questions. It also enhances your input with AI to craft compelling resume content!
 
-## 🚀 Features
+##  Features
 
 - 🧠 **AI Enhancement** using [Cohere](https://cohere.com/) to rewrite and polish user inputs
 - 🧾 Structured form-based entry for Education, Experience, Skills, and more
@@ -12,7 +12,7 @@ A sleek and intelligent AI-powered Resume Builder app built using **Streamlit**,
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend/UI:** Streamlit + Custom CSS
 - **Backend:** Python
@@ -22,13 +22,13 @@ A sleek and intelligent AI-powered Resume Builder app built using **Streamlit**,
 
 ---
 
-## 📸 Demo
+##  Demo
 
 ![AI Resume Builder Demo](link-to-demo-gif-or-image)
 
 ---
 
-## 🔧 How to Run Locally
+##  How to Run Locally
 
 ### 1. Clone the repo
 
@@ -67,7 +67,7 @@ streamlit run app.py
 ---
 
 
-## 📦 Requirements
+##  Requirements
 
 - Python 3.8+
 - Streamlit
