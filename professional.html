@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ data.name }} - Resume</title>
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      color: #000;
+    }
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px;
+    }
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-weight: normal;
+    }
+    h1 {
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+    .section-title {
+      background: #000;
+      color: #fff;
+      padding: 4px 8px;
+      margin-top: 30px;
+      display: inline-block;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .two-col {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .col {
+      flex: 1;
+      min-width: 250px;
+    }
+    ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .tag {
+      background: #eee;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .contact {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .bold {
+      font-weight: bold;
+    }
+    .subtitle {
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>{{ data.name }}</h1>
+    <div class="subtitle">{{ data.role }}{% if data.education and data.education[0].school %} | {{ data.education[0].school }}{% endif %}</div>
+    <div class="contact">
+      📍 {{ data.location }}<br>
+      📞 {{ data.phone }}<br>
+      ✉️ {{ data.email }}<br>
+      {% if data.website %}🔗 <a href="{{ data.website }}">{{ data.website }}</a>{% endif %}
+    </div>
+
+    <div class="section-title">Profile</div>
+    <p>{{ data.summary }}</p>
+
+    {% if data.education %}
+    <div class="section-title">Education</div>
+    {% for edu in data.education %}
+    <p class="bold">{{ edu.school }}</p>
+    <div class="subtitle">{{ edu.degree }} ({{ edu.year }})</div>
+    {% endfor %}
+    {% endif %}
+
+    {% if data.skills or data.soft_skills %}
+    <div class="section-title">Skills</div>
+    <div class="two-col">
+      {% if data.skills %}
+      <div class="col">
+        <div class="bold">Technical</div>
+        <div class="tags">
+          {% for skill in data.skills %}<span class="tag">{{ skill }}</span>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% if data.soft_skills %}
+      <div class="col">
+        <div class="bold">Soft Skills</div>
+        <div class="tags">
+          {% for skill in data.soft_skills %}<span class="tag">{{ skill }}</span>{% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if data.certifications %}
+    <div class="section-title">Certifications</div>
+    <ul>
+      {% for cert in data.certifications %}<li>{{ cert }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if data.projects %}
+    <div class="section-title">Projects</div>
+    <ul>
+      {% for project in data.projects %}
+      <li>
+        {% if project.title %}<span class="bold">{{ project.title }}:</span>{% endif %}
+        {{ project.description }} {% if project.link %}(<a href="{{ project.link }}">{{ project.link }}</a>){% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if data.activities %}
+    <div class="section-title">Designations & Activities</div>
+    <ul>
+      {% for activity in data.activities %}<li>{{ activity }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if data.hobbies %}
+    <div class="section-title">Interests</div>
+    <div class="tags">
+      {% for hobby in data.hobbies %}<span class="tag">{{ hobby }}</span>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.languages %}
+    <div class="section-title">Languages</div>
+    <div class="tags">
+      {% for lang in data.languages %}<span class="tag">{{ lang }}</span>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% if data.socials %}
+    <div class="section-title">Social</div>
+    <ul>
+      {% for social in data.socials %}<li><a href="{{ social }}">{{ social }}</a></li>{% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</body>
+</html>
