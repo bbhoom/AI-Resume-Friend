@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ data.name }} - Creative Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f3e9;
+      /* Cream background */
+      margin: 0;
+      padding: 30px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ff9a8b 0%, #ff6a88 100%);
+      border-radius: 25px 25px 0 0;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,.1)' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.6;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.5);
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .profile-text h1 {
+      font-size: 40px;
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ffffff, #ffe8cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-text p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .contact-info span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      backdrop-filter: blur(5px);
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      background-color: #fdf5e6;
+      /* Slightly different cream background */
+      border-radius: 0 0 25px 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .section-title {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .section:hover .section-title::after {
+      transform: translateX(0);
+    }
+
+    .purple {
+      background-color: #d4b2ff;
+    }
+
+    .orange {
+      background-color: #ffbb8c;
+    }
+
+    .green {
+      background-color: #b5e8b5;
+    }
+
+    .pink {
+      background-color: #ffb6d9;
+    }
+
+    .yellow {
+      background-color: #fff0a0;
+    }
+
+    .entry {
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .entry:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .entry h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .entry small {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .entry p {
+      margin: 8px 0 0;
+      font-size: 14px;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 240, 240, 0.6) 100%);
+      border-radius: 18px;
+      padding: 8px 16px;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tag:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .software-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .software-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      width: 60px;
+      text-align: center;
+    }
+
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .software-icon:hover .icon-box {
+      transform: translateY(-5px);
+    }
+
+    .software-icon span {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .languages-section {
+      position: relative;
+    }
+
+    .language-bar {
+      height: 10px;
+      border-radius: 5px;
+      background-color: #eee;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .language-progress {
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #ffb199, #ff0984);
+    }
+
+    .language-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .decoration-circle {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 180, 162, 0.4) 0%, rgba(255, 126, 195, 0.4) 100%);
+      z-index: 1;
+    }
+
+    .circle-1 {
+      top: -50px;
+      right: -50px;
+      animation: floatAround 15s infinite ease-in-out;
+    }
+
+    .circle-2 {
+      bottom: -70px;
+      left: 30%;
+      width: 200px;
+      height: 200px;
+      animation: floatAround 18s infinite ease-in-out reverse;
+    }
+
+    @keyframes floatAround {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      25% {
+        transform: translate(10px, -10px);
+      }
+
+      50% {
+        transform: translate(0, 5px);
+      }
+
+      75% {
+        transform: translate(-10px, 10px);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    .zigzag {
+      position: absolute;
+      height: 10px;
+      width: 100%;
+      background:
+        linear-gradient(45deg, transparent 33.333%, #ffd1dc 33.333%, #ffd1dc 66.667%, transparent 66.667%),
+        linear-gradient(135deg, transparent 33.333%, #ffd1dc 33.333%, #ffd1dc 66.667%, transparent 66.667%);
+      background-size: 20px 40px;
+      opacity: 0.5;
+    }
+
+    .zigzag-top {
+      top: 0;
+    }
+
+    .zigzag-bottom {
+      bottom: 0;
+    }
+
+    .hobbies-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .hobby-tag {
+      background: linear-gradient(135deg, #ffda75 0%, #ffa647 100%);
+      color: #333;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .hobby-tag:hover {
+      transform: scale(1.05);
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-link {
+      padding: 10px 15px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 240, 240, 0.6) 100%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .social-link:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .profile {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .header,
+      .content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="profile">
+        {% if data.image_base64 %}
+        <img class="profile-img" src="data:image/png;base64,{{ data.image_base64 }}" alt="{{ data.name }}">
+        {% endif %}
+        <div class="profile-text">
+          <h1>{{ data.name }}</h1>
+          <p>{{ data.summary }}</p>
+          <div class="contact-info">
+            {% if data.website %}<span>🔗 {{ data.website }}</span>{% endif %}
+            <span>📱 {{ data.phone }}</span>
+            <span>✉️ {{ data.email }}</span>
+            <span>📍 {{ data.location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="decoration-circle circle-1"></div>
+      <div class="decoration-circle circle-2"></div>
+
+      {% if data.education %}
+      <div class="section">
+        <div class="section-title purple">EDUCATION</div>
+        {% for edu in data.education %}
+        <div class="entry">
+          <h4>{{ edu.degree }}</h4>
+          <small>{{ edu.school }} | {{ edu.year }}</small>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if data.experience %}
+      <div class="section">
+        <div class="section-title orange">EXPERIENCE</div>
+        {% for job in data.experience %}
+        <div class="entry">
+          <h4>{{ job.role }}</h4>
+          <small>{{ job.company }} | {{ job.dates }}</small>
+          {% if job.bullet_points %}
+          {% for bullet in job.bullet_points %}
+          <p>• {{ bullet }}</p>
+          {% endfor %}
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if data.skills %}
+      <div class="section">
+        <div class="section-title yellow">SKILLS</div>
+        <div class="tag-cloud">
+          {% for skill in data.skills %}
+          <span class="tag">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if data.software %}
+      <div class="section">
+        <div class="section-title pink">SOFTWARE</div>
+        <div class="software-icons">
+          {% for soft in data.software %}
+          <div class="software-icon">
+            <div class="icon-box">{{ soft[:2] }}</div>
+            <span>{{ soft }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if data.projects %}
+      <div class="section">
+        <div class="section-title green">PROJECTS</div>
+        {% for project in data.projects %}
+        <div class="entry">
+          <p>• {{ project }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if data.languages %}
+      <div class="section languages-section">
+        <div class="section-title purple">LANGUAGES</div>
+        {% for lang in data.languages %}
+        <div class="language-item">
+          <div class="language-name">
+            <span>{{ lang }}</span>
+            <span>
+              {% if loop.index == 1 %}Expert{% elif loop.index == 2 %}Advanced{% else %}Intermediate{% endif %}
+            </span>
+          </div>
+          <div class="language-bar">
+            <div class="language-progress"
+              style="width: {% if loop.index == 1 %}95%{% elif loop.index == 2 %}80%{% else %}65%{% endif %}"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if data.certifications %}
+      <div class="section">
+        <div class="section-title orange">CERTIFICATIONS</div>
+        {% for cert in data.certifications %}
+        <div class="entry">
+          <p>🏆 {{ cert }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if data.hobbies %}
+      <div class="section">
+        <div class="section-title yellow">HOBBIES</div>
+        <div class="hobbies-cloud">
+          {% for hobby in data.hobbies %}
+          <span class="hobby-tag">{{ hobby }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if data.socials %}
+      <div class="section">
+        <div class="section-title pink">CONNECT WITH ME</div>
+        <div class="social-links">
+          {% for link in data.socials %}
+          <a href="{{ link }}" class="social-link">
+            {% if 'linkedin' in link %}✨ LinkedIn{% elif 'github' in link %}⭐ GitHub{% elif 'behance' in link %}🎨
+            Behance{% elif 'dribbble' in link %}🏀 Dribbble{% else %}🔗 Profile{% endif %}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+
+</html>
