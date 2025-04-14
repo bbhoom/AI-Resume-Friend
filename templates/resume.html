@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume - {{ data.name }}</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+    .resume {
+      max-width: 900px;
+      background: #fff;
+      padding: 40px;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    h2 {
+      color: #f39c12;
+      font-size: 22px;
+      border-bottom: 2px solid #f39c12;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .info {
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .tag {
+      display: inline-block;
+      background-color: #e1ecf4;
+      color: #0366d6;
+      padding: 5px 10px;
+      margin: 5px 5px 0 0;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+    .job {
+      margin-bottom: 20px;
+    }
+    .job h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .job small {
+      color: #888;
+    }
+    .bullet {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume">
+    <h1>{{ data.name }}</h1>
+    <div class="info">
+      <strong>Role:</strong> {{ data.role }}<br>
+      <strong>Date of Birth:</strong> {{ data.dob }}<br>
+      <strong>Location:</strong> {{ data.location }}<br>
+      <strong>Email:</strong> {{ data.email }}<br>
+      <strong>Phone:</strong> {{ data.phone }}<br>
+      <strong>Languages:</strong> {{ data.languages | join(', ') }}<br>
+      <strong>Portfolio:</strong> {{ data.portfolio }}<br>
+    </div>
+
+    <h2>Professional Summary</h2>
+    <p>{{ data.summary }}</p>
+
+    <h2>Work Experience</h2>
+    {% for exp in data.experience %}
+      <div class="job">
+        <h3>{{ exp.role }} at {{ exp.company }}</h3>
+        <small>{{ exp.dates }}</small>
+        <ul class="bullet">
+          {% for point in exp.bullet_points %}
+            <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+
+    <h2>Education</h2>
+    {% for edu in data.education %}
+      <div class="job">
+        <h3>{{ edu.degree }} - {{ edu.school }}</h3>
+        <small>{{ edu.year }}</small>
+      </div>
+    {% endfor %}
+
+    <h2>Skills</h2>
+    <div>
+      {% for skill in data.skills %}
+        <span class="tag">{{ skill }}</span>
+      {% endfor %}
+    </div>
+
+    <h2>Certifications</h2>
+    <ul>
+      {% for cert in data.certifications %}
+        <li>{{ cert }}</li>
+      {% endfor %}
+    </ul>
+
+    <h2>Projects</h2>
+    <ul>
+      {% for project in data.projects %}
+        <li>
+          <strong>{{ project.title }}</strong>: {{ project.description }}
+          {% if project.link %}<br>🔗 <a href="{{ project.link }}">{{ project.link }}</a>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h2>Areas of Expertise</h2>
+    <div>
+      {% for area in data.expertise %}
+        <span class="tag">{{ area }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

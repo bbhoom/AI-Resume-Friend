@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ data.name }} - Professional Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700&display=swap');
+
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --text: #333;
+      --light-text: #7f8c8d;
+      --border: #ddd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Lato', Helvetica, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: #fff;
+      font-size: 14px;
+    }
+
+    .resume-container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 30px 40px;
+      background: white;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+
+    .header-info {
+      flex: 1;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--light);
+      margin-left: 30px;
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    h2 {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--secondary);
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      color: var(--light-text);
+    }
+
+    .contact-icon {
+      margin-right: 8px;
+    }
+
+    .contact-item a {
+      color: var(--secondary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .contact-item a:hover {
+      border-color: var(--secondary);
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    .summary {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .two-col {
+      display: flex;
+      gap: 30px;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    .experience-item,
+    .education-item {
+      margin-bottom: 20px;
+    }
+
+    .position {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .company {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .dates {
+      font-style: italic;
+      color: var(--light-text);
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .school {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .degree {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    li {
+      margin-bottom: 5px;
+      position: relative;
+    }
+
+    ul.achievements li::marker {
+      color: var(--secondary);
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .skill-tag {
+      background-color: var(--light);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    .skills-col {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .skills-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .project-item {
+      margin-bottom: 15px;
+    }
+
+    .project-title {
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 15px;
+    }
+
+    .project-desc {
+      margin-top: 5px;
+    }
+
+    .project-tech {
+      font-style: italic;
+      color: var(--secondary);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .languages-list,
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .language-item,
+    .interest-item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .social-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .social-item a {
+      color: var(--secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .social-item a:hover {
+      color: var(--primary);
+    }
+
+    @media print {
+      .resume-container {
+        box-shadow: none;
+        padding: 0;
+      }
+
+      body {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .two-col {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .header {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-img {
+        margin: 0 0 20px 0;
+      }
+
+      .contact-info {
+        justify-content: center;
+      }
+
+      .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="resume-container">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="header-info">
+        <h1>{{ data.name }}</h1>
+        <h2>{{ data.role }}</h2>
+        <div class="contact-info">
+          {% if data.location %}
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <span>{{ data.location }}</span>
+          </div>
+          {% endif %}
+
+          {% if data.phone %}
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <span>{{ data.phone }}</span>
+          </div>
+          {% endif %}
+
+          {% if data.email %}
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <span><a href="mailto:{{ data.email }}">{{ data.email }}</a></span>
+          </div>
+          {% endif %}
+
+          {% if data.website %}
+          <div class="contact-item">
+            <span class="contact-icon">🔗</span>
+            <span><a href="{{ data.website }}" target="_blank">{{ data.website }}</a></span>
+          </div>
+          {% endif %}
+
+          {% if data.socials and data.socials|length > 0 %}
+          {% for social in data.socials %}
+          {% if loop.index <= 2 %} <div class="contact-item">
+            <span class="contact-icon">👤</span>
+            <span><a href="{{ social.split(':')[1] if ':' in social else social }}" target="_blank">{{
+                social.split(':')[0] if ':' in social else social }}</a></span>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if data.image_base64 and data.styling.include_photo %}
+    <img class="profile-img" src="data:image/png;base64,{{ data.image_base64 }}" alt="{{ data.name }}" />
+    {% endif %}
+  </div>
+
+  <!-- Professional Summary -->
+  {% if data.summary %}
+  <div class="section">
+    <h3 class="section-title">Professional Summary</h3>
+    <p class="summary">{{ data.summary }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Main Content - Two Column Layout -->
+  <div class="two-col">
+    <div class="col">
+      <!-- Work Experience -->
+      {% if data.experience and data.experience|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Professional Experience</h3>
+        {% for job in data.experience %}
+        <div class="experience-item">
+          <div class="position">{{ job.role }}</div>
+          <div class="company">
+            {{ job.company }}
+            <span class="dates">{{ job.dates }}</span>
+          </div>
+          {% if job.location %}<div class="location">{{ job.location }}</div>{% endif %}
+          <ul class="achievements">
+            {% for bullet in job.bullet_points %}
+            <li>{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Projects -->
+      {% if data.projects_data and data.projects_data|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Projects</h3>
+        {% for project in data.projects_data %}
+        <div class="project-item">
+          <div class="project-title">{{ project.title }}{% if project.dates %} <span class="dates">({{ project.dates
+              }})</span>{% endif %}</div>
+          <div class="project-desc">{{ project.description }}</div>
+          {% if project.tech_stack %}<div class="project-tech">Technologies: {{ project.tech_stack }}</div>{% endif %}
+          {% if project.link %}<div class="project-link"><a href="{{ project.link }}" target="_blank">{{ project.link
+              }}</a></div>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col">
+      <!-- Education -->
+      {% if data.education and data.education|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Education</h3>
+        {% for edu in data.education %}
+        <div class="education-item">
+          <div class="school">{{ edu.school }}</div>
+          <div class="degree">
+            {{ edu.degree }}
+            <span class="dates">{{ edu.year }}</span>
+          </div>
+          {% if edu.location %}<div class="location">{{ edu.location }}</div>{% endif %}
+          {% if edu.gpa %}<div class="gpa">GPA: {{ edu.gpa }}</div>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Skills Section -->
+      {% if data.skills and data.skills|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Skills</h3>
+        <div class="skills-container">
+          {% for skill in data.skills %}
+          <span class="skill-tag">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Certifications -->
+      {% if data.certifications and data.certifications|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Certifications</h3>
+        <ul>
+          {% for cert in data.certifications %}
+          <li>{{ cert }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Languages -->
+      {% if data.languages and data.languages|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Languages</h3>
+        <ul class="languages-list">
+          {% for lang in data.languages %}
+          <li class="language-item">{{ lang }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Interests -->
+      {% if data.hobbies and data.hobbies|length > 0 %}
+      <div class="section">
+        <h3 class="section-title">Interests</h3>
+        <ul class="interests-list">
+          {% for hobby in data.hobbies %}
+          <li class="interest-item">{{ hobby }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Additional Social Profiles -->
+      {% if data.socials and data.socials|length > 2 %}
+      <div class="section">
+        <h3 class="section-title">Connect</h3>
+        <ul class="social-list">
+          {% for social in data.socials %}
+          {% if loop.index > 2 %}
+          <li class="social-item">
+            <a href="{{ social.split(':')[1] if ':' in social else social }}" target="_blank">
+              {{ social.split(':')[0] if ':' in social else social }}
+            </a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>

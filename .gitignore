@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.env
+resume.pdf
+temp_resume.html
