@@ -23,10 +23,15 @@ A sleek and intelligent AI-powered Resume Builder app built using **Streamlit**,
 ---
 
 ##  Demo
+![image](https://github.com/user-attachments/assets/bf28b6a4-874f-4107-b093-a90b0cf36857)
 
-![image](https://github.com/user-attachments/assets/d10746be-1c4a-43a9-8e28-a466a5b61b3a)
 
-![image](https://github.com/user-attachments/assets/5eefe356-6caf-48ae-9a8a-9bb07eecdd0c)
+![image](https://github.com/user-attachments/assets/57ed2d67-8839-426d-88f2-5ac3ac0dc6f1)
+
+
+![image](https://github.com/user-attachments/assets/92c8d116-e356-4d9f-a416-5e30b62aa2ec)
+
+
 
 ---
 
