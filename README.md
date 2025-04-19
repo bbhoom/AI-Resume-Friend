@@ -24,7 +24,9 @@ A sleek and intelligent AI-powered Resume Builder app built using **Streamlit**,
 
 ##  Demo
 
-![AI Resume Builder Demo](link-to-demo-gif-or-image)
+![image](https://github.com/user-attachments/assets/d10746be-1c4a-43a9-8e28-a466a5b61b3a)
+
+![image](https://github.com/user-attachments/assets/5eefe356-6caf-48ae-9a8a-9bb07eecdd0c)
 
 ---
 
@@ -78,7 +80,5 @@ streamlit run app.py
 
 
 ## 🌐 Live Demo
-
-🔗 [Try it out here](https://your-deployment-link.com) *(Optional if hosted)*
 
 ```
